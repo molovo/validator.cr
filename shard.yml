@@ -1,0 +1,13 @@
+name: validator
+version: 0.1.0
+
+authors:
+  - James Dinsdale <hi@molovo.co>
+
+dependencies:
+  crinja:
+    github: straight-shoota/crinja
+
+crystal: 0.23.0
+
+license: MIT
