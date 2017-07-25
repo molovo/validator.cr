@@ -1,6 +1,6 @@
 class Validator
   # The base class which all validation rules inherit
-  class Rule
+  abstract class Rule
     # The rule name
     @name : String?
 
@@ -24,28 +24,26 @@ class Validator
 
     # The rule name
     def name : String
-      unless @name.nil?
-        @name
+      if @name.nil?
+        raise Errors::InvalidRuleError.new "You must specify a rule name"
       end
 
-      raise Errors::InvalidRuleError.new "You must specify a rule name"
+      @name
     end
 
     # The error message template
     def error_message(values : Hash(String, String)) : String
       template = @error_message_template
 
-      unless template.nil?
-        crinja = Crinja::Template.new template
-        return crinja.render values
+      if template.nil?
+        raise Errors::InvalidRuleError.new "Rule #{@name} must specify a message template"
       end
 
-      raise Errors::InvalidRuleError.new "Rule #{@name} must specify a message template"
+      crinja = Crinja::Template.new template
+      return crinja.render values
     end
 
     # Validate the provided value
-    def validate(value : _) : Boolean
-      raise Errors::InvalidRuleError.new "Rule #{@name} must specify it's own validate method"
-    end
+    abstract def validate(value : _) : Boolean
   end
 end

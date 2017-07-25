@@ -79,9 +79,9 @@ class Validator
   end
 
   # Parse a rule string and create the corresponding rule instance
-  private def parse(rules : Hash(String, String))
-    rules.map do |name, rules|
-      rules.split('|').map do |rule|
+  private def parse(ruleset : Hash(String, String))
+    ruleset.map do |name, rules|
+      @rules[name] = rules.split('|').map do |rule|
         # Separate the rule name and arguments
         name, args = rule.split ':'
 
