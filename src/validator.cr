@@ -7,8 +7,12 @@ require "./validator/rules/*"
 # The main validator instance
 class Validator
   RULES = {
-    "alpha" => Rules::Alpha,
-    "regex" => Rules::Regex,
+    "accepted"    => Rules::Accepted,
+    "alpha_dash"  => Rules::AlphaDash,
+    "alpha_num"   => Rules::AlphaNum,
+    "alpha_space" => Rules::AlphaSpace,
+    "alpha"       => Rules::Alpha,
+    "regex"       => Rules::Regex,
   }
 
   # Whether the current dataset is valid
@@ -83,11 +87,11 @@ class Validator
     ruleset.map do |name, rules|
       @rules[name] = rules.split('|').map do |rule|
         # Separate the rule name and arguments
-        name, args = rule.split ':'
+        name, arg_string = rule.split ':'
 
         # If there are arguments present, separate them into an array
-        unless args.nil?
-          args = args.split ','
+        unless arg_string.nil?
+          args = arg_string.split ','
         end
 
         # Check the rule name is valid

@@ -11,15 +11,17 @@ class Validator
     getter validator : Validator
 
     # The rule arguments
-    getter args : Array(String)
+    getter args : Array(String)?
 
-    # Create the rule instance statically
-    def self.new(validator : Validator, args : Array(String) = [] of String) : self
-      initialize validator, args
-    end
+    # # Create the rule instance statically
+    # def self.new(@validator : Validator, @args : Array(String) = [] of String) : self
+    #   if responds_to? :initialize
+    #     initialize validator, args
+    #   end
+    # end
 
     # Create the rule instance
-    def initialize(@validator, @args = [] of String) : self
+    def initialize(@validator, @args = [] of String)
     end
 
     # The rule name
