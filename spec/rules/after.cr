@@ -1,4 +1,12 @@
 describe Validator::Rules::After do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["after"]
+    instance = rule.new validator, ["2010-01-01"]
+
+    instance.is_a?(Validator::Rules::After).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with a correct date" do
       validator = Validator.new

@@ -25,7 +25,7 @@ module Validator::Rules
     end
 
     # Validate the provided value
-    def validate(value : _) : Bool
+    def validate(value : Validator::AllParamTypes) : Bool
       !(@regex !~ value)
     end
   end

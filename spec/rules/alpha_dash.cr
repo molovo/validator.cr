@@ -1,4 +1,12 @@
 describe Validator::Rules::AlphaDash do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["alpha_dash"]
+    instance = rule.new validator
+
+    instance.is_a?(Validator::Rules::AlphaDash).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with a string of letters, numbers and dashes" do
       validator = Validator.new

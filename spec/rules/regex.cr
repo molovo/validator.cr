@@ -1,4 +1,12 @@
 describe Validator::Rules::Regex do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["regex"]
+    instance = rule.new validator, ["^.+$"]
+
+    instance.is_a?(Validator::Rules::Regex).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with a matching regex" do
       validator = Validator.new

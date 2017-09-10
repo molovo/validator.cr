@@ -1,4 +1,12 @@
 describe Validator::Rules::AlphaNum do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["alpha_num"]
+    instance = rule.new validator
+
+    instance.is_a?(Validator::Rules::AlphaNum).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with a string of alphanumeric characters" do
       validator = Validator.new

@@ -13,13 +13,6 @@ class Validator
     # The rule arguments
     getter args : Array(String)?
 
-    # # Create the rule instance statically
-    # def self.new(@validator : Validator, @args : Array(String) = [] of String) : self
-    #   if responds_to? :initialize
-    #     initialize validator, args
-    #   end
-    # end
-
     # Create the rule instance
     def initialize(@validator, @args = [] of String)
     end
@@ -42,10 +35,10 @@ class Validator
       end
 
       crinja = Crinja::Template.new template
-      return crinja.render values
+      crinja.render values
     end
 
     # Validate the provided value
-    abstract def validate(value : _) : Boolean
+    abstract def validate(value : Validator::AllParamTypes) : Bool
   end
 end

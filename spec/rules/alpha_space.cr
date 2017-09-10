@@ -1,4 +1,12 @@
 describe Validator::Rules::AlphaSpace do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["alpha_space"]
+    instance = rule.new validator
+
+    instance.is_a?(Validator::Rules::AlphaSpace).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with a string of valid characters" do
       validator = Validator.new

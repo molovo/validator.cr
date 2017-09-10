@@ -17,11 +17,11 @@ module Validator::Rules
         raise Errors::InvalidRuleError.new "You must define a date"
       end
     end
-    
+
     # The error message template
     def error_message(values : Hash(String, String)) : String
       date = @date
-      
+
       unless date.nil?
         values["date"] = date.to_s "%F"
       end
@@ -29,14 +29,15 @@ module Validator::Rules
       super values
     end
 
-    def validate(value : _) : Bool
+    # Validate the value
+    def validate(value : Validator::AllParamTypes) : Bool
       case value
       when .is_a? ::Time
         value_date = value
       when .is_a? String
         value_date = ::Time.parse value, "%F"
       when .is_a? Int32
-        value_date = ::Time.parse value, "%s"
+        value_date = ::Time.parse value.to_s, "%s"
       end
 
       date = @date

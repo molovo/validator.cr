@@ -1,4 +1,12 @@
 describe Validator::Rules::Accepted do
+  it "can be sourced from validator" do
+    validator = Validator.new
+    rule = Validator::RULES["accepted"]
+    instance = rule.new validator
+
+    instance.is_a?(Validator::Rules::Accepted).should eq(true)
+  end
+
   describe "#validate" do
     it "validates with accepted values" do
       validator = Validator.new
