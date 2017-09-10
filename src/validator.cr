@@ -41,10 +41,23 @@ class Validator
   alias AllNumberTypes = Int16 | Int32 | Int64 | Int8 | UInt16 | UInt32 | UInt64 | UInt8 | Float32 | Float64
 
   # Alias of all possible parameter types which could be used for values
-  alias AllParamTypes = Nil | String | AllNumberTypes | Bool | Hash(String, AllParamTypes) | Array(AllParamTypes) | Time
+  alias AllParamTypes = JSON::Type | AllNumberTypes | Hash(String, AllParamTypes) | Array(AllParamTypes) | Time
 
   # Create the validator instance
-  def initialize(data : HTTP::Params = HTTP::Params.new({} of String => Array(String)), rules : Hash(String, String) = {} of String => String)
+  def initialize(data : Kemal::ParamParser, rules : Hash(String, String) = {} of String => String)
+    typed_data = {} of String => AllParamTypes
+
+    data.all.each do |key, value|
+      typed_data[key] = value.as(AllParamTypes)
+    end
+
+    @data = typed_data
+
+    parse rules
+  end
+
+  # Create the validator instance
+  def initialize(data : HTTP::Params, rules : Hash(String, String) = {} of String => String)
     typed_data = {} of String => AllParamTypes
 
     data.each do |key, value|
