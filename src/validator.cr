@@ -18,6 +18,7 @@ class Validator
     "before"      => Rules::Before,
     "boolean"     => Rules::Boolean,
     "in"          => Rules::In,
+    "not_in"      => Rules::NotIn,
     "regex"       => Rules::Regex,
     "required"    => Rules::Required,
   }

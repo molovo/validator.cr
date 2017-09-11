@@ -31,11 +31,11 @@ module Validator::Rules
     # Validate the value
     def validate(value : Validator::AllParamTypes) : Bool
       accepted = @accepted
-      if accepted.nil?
-        return false
-      else
+      unless accepted.nil?
         return accepted.count(value.to_s) > 0
       end
+
+      false
     end
   end
 end
