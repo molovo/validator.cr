@@ -16,13 +16,21 @@ class Validator
     "alpha"       => Rules::Alpha,
     "array"       => Rules::Array,
     "before"      => Rules::Before,
+    "boolean"     => Rules::Boolean,
+    "in"          => Rules::In,
     "regex"       => Rules::Regex,
     "required"    => Rules::Required,
   }
 
   # Whether the current dataset is valid
   @valid : Bool? = nil
-  
+
+  # A hash of rules to be used
+  @rules = {} of String => Array(Rule)
+
+  # A hash of rules to be used
+  @rules = {} of String => Array(Rule)
+
   # A hash of rules to be used
   @rules = {} of String => Array(Rule)
 
