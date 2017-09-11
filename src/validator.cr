@@ -15,6 +15,7 @@ class Validator
     "alpha_space" => Rules::AlphaSpace,
     "alpha"       => Rules::Alpha,
     "array"       => Rules::Array,
+    "before"      => Rules::Before,
     "regex"       => Rules::Regex,
     "required"    => Rules::Required,
   }

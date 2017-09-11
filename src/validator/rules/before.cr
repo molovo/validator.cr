@@ -1,5 +1,5 @@
 module Validator::Rules
-  class After < Rule
+  class Before < Rule
     # The date to compare against
     @date : ::Time?
 
@@ -7,7 +7,7 @@ module Validator::Rules
     @inclusive : Bool = false
 
     # The error message template
-    @error_message_template = "The value for {{ label }} must be a valid date {% if inclusive == 'true' %}on or {% endif %}after {{ date }}"
+    @error_message_template = "The value for {{ label }} must be a valid date {% if inclusive == 'true' %}on or {% endif %}before {{ date }}"
 
     # Create the rule instance
     def initialize(@validator, @args = [] of String)
@@ -56,9 +56,9 @@ module Validator::Rules
       end
 
       if @inclusive
-        return value_date >= date
+        return value_date <= date
       else
-        return value_date > date
+        return value_date < date
       end
     end
   end
