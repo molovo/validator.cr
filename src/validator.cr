@@ -22,15 +22,15 @@ class Validator
 
   # Whether the current dataset is valid
   @valid : Bool? = nil
+  
+  # A hash of rules to be used
+  @rules = {} of String => Array(Rule)
 
   # A hash of errors found during validation
   getter errors = {} of String => String
 
   # The data to be validated
   getter data = {} of String => AllParamTypes
-
-  # A hash of rules to be used
-  getter rules = {} of String => Array(Rule)
 
   # A hash of custom error messages
   property messages = {} of String => String
