@@ -20,17 +20,20 @@ module Validator::Rules
     end
 
     def error_message(values : Hash(String, String)) : String
-      value = @value
-      m = case value
-          when value.nil?          then "be exactly #{@size.to_s}"
-          when value.is_a?(Int)    then "be exactly #{@size.to_s}"
-          when value.is_a?(Array)  then "contain exactly #{@size.to_s} items"
-          when value.is_a?(Hash)   then "contain exactly #{@size.to_s} items"
-          when value.is_a?(String) then "be exactly #{@size.to_s} characters long"
-          else                          "be exactly #{@size.to_s}"
-          end
+      unless values.has_key?("message")
+        value = @value
+        m = case value
+            when value.nil?          then "be exactly #{@size.to_s}"
+            when value.is_a?(Int)    then "be exactly #{@size.to_s}"
+            when value.is_a?(Array)  then "contain exactly #{@size.to_s} items"
+            when value.is_a?(Hash)   then "contain exactly #{@size.to_s} items"
+            when value.is_a?(String) then "be exactly #{@size.to_s} characters long"
+            else                          "be exactly #{@size.to_s}"
+            end
 
-      values["message"] = m
+        values["message"] = m
+      end
+
       super values
     end
 

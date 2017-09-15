@@ -18,9 +18,12 @@ class Validator
     "before"      => Rules::Before,
     "boolean"     => Rules::Boolean,
     "in"          => Rules::In,
+    "min"         => Rules::Min,
+    "max"         => Rules::Max,
     "not_in"      => Rules::NotIn,
     "regex"       => Rules::Regex,
     "required"    => Rules::Required,
+    "size"        => Rules::Size,
   }
 
   # Whether the current dataset is valid
