@@ -32,12 +32,6 @@ class Validator
   # A hash of rules to be used
   @rules = {} of String => Array(Rule)
 
-  # A hash of rules to be used
-  @rules = {} of String => Array(Rule)
-
-  # A hash of rules to be used
-  @rules = {} of String => Array(Rule)
-
   # A hash of errors found during validation
   getter errors = {} of String => String
 
